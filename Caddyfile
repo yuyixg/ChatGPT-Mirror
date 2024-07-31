@@ -1,7 +1,3 @@
 # 使用现有的镜像作为基础镜像
 FROM dairoot/chatgpt-mirror:latest
 
-# 暴露端口
-EXPOSE 50001
-EXPOSE 50002
-

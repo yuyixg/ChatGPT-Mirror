@@ -1,15 +1,15 @@
-localhost:443 {
-	handle /fe/* {
-		uri strip_prefix /fe
-		file_server
-		root * ./admin/dist/
-	}
+# 使用现有的镜像作为基础镜像
+FROM dairoot/chatgpt-mirror:latest
 
-	handle {
-		reverse_proxy * {
-			to localhost:50001
-			# to localhost:50001 localhost:50002
-			lb_policy round_robin
-		}
-	}
-}
+# 设置工作目录
+WORKDIR /app
+
+# 复制本地文件到容器中
+COPY ./admin/dist /tmp/dist
+
+# 暴露端口
+EXPOSE 50001
+EXPOSE 50002
+
+# 运行命令
+CMD ["your_start_command"]  # 替换为启动服务的实际命令
